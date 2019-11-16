@@ -16,5 +16,15 @@ ENV PATH="${PATH}:/usr/lib/dart/bin/"
 ENV PATH="${PATH}:/root/.pub-cache/bin"
 
 RUN pub global activate webdev
-
 RUN pub global activate stagehand
+
+# Flutter
+# https://flutter.dev/docs/get-started/install/linux
+RUN apt-get install -y xz-utils
+WORKDIR /tmp
+RUN wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz
+RUN mkdir /works/development
+WORKDIR /user/local
+RUN tar xf /tmp/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz
+ENV PATH="${PATH}:/usr/local/flutter/bin"
+RUN flutter precache
