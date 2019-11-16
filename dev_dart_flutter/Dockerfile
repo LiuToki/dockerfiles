@@ -1,5 +1,7 @@
 FROM ubuntu:19.10
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt update
 RUN apt install -y curl wget gnupg less lsof net-tools git apt-utils
 
