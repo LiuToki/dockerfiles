@@ -23,7 +23,7 @@ RUN pub global activate stagehand
 RUN apt install -y --no-install-recommends xz-utils
 WORKDIR /tmp
 RUN wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz
-RUN tar xf flutter_linux_v1.9.1+hotfix.6-stable.tar.xz -C /user/local
+RUN tar xf flutter_linux_v1.9.1+hotfix.6-stable.tar.xz -C /usr/local
 ENV PATH="${PATH}:/usr/local/flutter/bin"
 RUN flutter precache
 
