@@ -14,8 +14,8 @@ RUN sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/
 RUN apt update
 RUN apt install -y dart
 
-ENV PATH="${PATH}:/usr/lib/dart/bin/"
-ENV PATH="${PATH}:/root/.pub-cache/bin"
+ENV PATH ${PATH}:/usr/lib/dart/bin/
+ENV PATH ${PATH}:/root/.pub-cache/bin
 
 RUN pub global activate webdev
 RUN pub global activate stagehand
@@ -26,7 +26,7 @@ RUN apt install -y xz-utils
 WORKDIR /tmp
 RUN wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz
 RUN tar xf flutter_linux_v1.9.1+hotfix.6-stable.tar.xz -C /usr/local
-ENV PATH="${PATH}:/usr/local/flutter/bin"
+ENV PATH ${PATH}:/usr/local/flutter/bin
 RUN flutter precache
 
 # SSH
