@@ -43,3 +43,8 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
+
+# .bashrc
+RUN echo "if [ -f ~/.bashrc ]; then  . ~/.bashrc;  fi" >>~/.bash_profile
+RUN echo "PATH=${PATH}" >> ~/.bashrc
+
