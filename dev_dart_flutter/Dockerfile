@@ -26,7 +26,7 @@ RUN apt install -y xz-utils
 WORKDIR /tmp
 RUN wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz
 RUN tar xf flutter_linux_v1.9.1+hotfix.6-stable.tar.xz -C /usr/local
-RUN export PATH=$PATH:/usr/local/flutter/bin
+ENV PATH $PATH:/usr/local/flutter/bin
 RUN flutter precache
 
 # SSH
