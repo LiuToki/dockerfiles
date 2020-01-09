@@ -7,8 +7,8 @@ RUN apt update
 RUN apt install -y curl wget gnupg less lsof net-tools git apt-utils
 
 # selenium-webdriver
-RUN wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/62.0/linux-x86_64/ja/firefox-65.0.tar.bz2
-RUN tar xfj firefox-62.0.tar.bz2
+RUN wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/72.0/linux-x86_64/ja/firefox-72.0.tar.bz2
+RUN tar xfj firefox-72.0.tar.bz2
 RUN mv firefox /usr/local/
 RUN ln -s /usr/local/firefox/firefox /usr/local/bin/firefox
 RUN apt install libgtk-3-dev
