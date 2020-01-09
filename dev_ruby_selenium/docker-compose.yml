@@ -1,0 +1,15 @@
+version: "2.2"
+services:
+    selenium:
+        image: selenium/standalone-firefox
+        container_name: ruby_scraping_selenium
+        volumes:
+            - /dev/shm:/dev/shm
+    scraping:
+        image: docker-scraping
+        container_name: ruby_scraping
+        build: ./ruby
+        ports:
+            - '63202:22'
+        depends_on:
+            - selenium
