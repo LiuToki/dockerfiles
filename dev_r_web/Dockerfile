@@ -38,7 +38,10 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 
 # startup for all command
-RUN echo "/init; /usr/sbin/sshd -D; /usr/bin/shiny-server.sh" >> /root/.startup.sh
+RUN echo \
+ "/init \
+  /usr/sbin/sshd -D" \
+ >> /root/.startup.sh
 RUN chmod 744 /root/.startup.sh
 CMD ["/root/.startup.sh"]
 
