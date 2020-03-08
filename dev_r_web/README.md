@@ -17,9 +17,9 @@ $ ssh -X -p 63203 root@localhost
 ```
 3. Clean up
 ```
-$ docker container stop dev_r_web
-$ docker container rm dev_r_web
-# If you want to remove dev_r_web image, do the following command.
+$ docker container stop r_web
+$ docker container rm r_web
+# If you want to remove r_web image, do the following command.
 $ docker image rm dev_r_web
 ```
 

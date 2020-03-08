@@ -2,28 +2,6 @@ FROM rocker/shiny
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# tidyverse
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-  libxml2-dev \
-  libcairo2-dev \
-  libsqlite-dev \
-  libmariadbd-dev \
-  libmariadbclient-dev \
-  libpq-dev \
-  libssh2-1-dev \
-  unixodbc-dev \
-  libsasl2-dev \
-  && install2.r --error \
-    --deps TRUE \
-    tidyverse \
-    dplyr \
-    devtools \
-    formatR \
-    remotes \
-    selectr \
-    caTools \
-    BiocManager
-
 # rstudio for jp
 # Change environment to Japanese(Character and DateTime)
 ENV LANG ja_JP.UTF-8
@@ -60,9 +38,9 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 
 # startup for all command
-RUN echo "/init; /usr/sbin/sshd -D; /usr/bin/shiny-server.sh" >>~/.startup.sh
-RUN chmod 744 ~/.startup.sh
-CMD ["~/.startup.sh"]
+RUN echo "/init; /usr/sbin/sshd -D; /usr/bin/shiny-server.sh" >> /root/.startup.sh
+RUN chmod 744 /root/.startup.sh
+CMD ["/root/.startup.sh"]
 
 # .bashrc
 RUN echo "if [ -f ~/.bashrc ]; then  . ~/.bashrc;  fi" >>~/.bash_profile
