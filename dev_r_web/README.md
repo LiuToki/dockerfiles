@@ -42,5 +42,22 @@ Host dev_r_web
 "remote.SSH.showLoginTerminal": true
 ```
 
+## Access to apps from Host.
+1. Run the shiny apps.
+```
+$ r test.R
+
+Listening on http://127.0.0.1:xxxx
+```
+2. ssh port forwarding from Host.
+```
+ssh -L 8081:localhost:xxxx dev_r_web
+```
+
+3. Access through browser
+````
+http://localhost:8081
+````
+
 # Memo
 OS:debian
