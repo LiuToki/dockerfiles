@@ -8,7 +8,7 @@ Build r web development environment with ssh.
 $ git clone https://github.com/liutoki/dockerfiles.git
 $ cd dockerfiles/dev_r_web
 $ docker build . -t  dev_r_web
-$ docker run -d -P -p 63203:22 --name dart_flutter -it dev_r_web
+$ docker run -d -P -p 63203:22 -p 3838:3838 --name r_web -it dev_r_web
 ```
 2. Access to docker image from your host os
 ```
@@ -17,8 +17,8 @@ $ ssh -X -p 63203 root@localhost
 ```
 3. Clean up
 ```
-$ docker container stop dart_flutter
-$ docker container rm dart_flutter
+$ docker container stop dev_r_web
+$ docker container rm dev_r_web
 # If you want to remove dev_r_web image, do the following command.
 $ docker image rm dev_r_web
 ```
