@@ -65,11 +65,6 @@ RUN curl -sL https://github.com/treefrogframework/treefrog-framework/archive/mas
     make -C tools install && \
     rm -rf /usr/src/treefrog
 
-VOLUME  /webapp
-WORKDIR /webapp
-EXPOSE  8800
-CMD ["treefrog", "-p", "8800", "/webapp"]
-
 # SSH
 RUN apt install -y openssh-server
 RUN mkdir /var/run/sshd
