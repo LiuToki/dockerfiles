@@ -6,21 +6,19 @@ Build treefrog's development environment with ssh.
 1. Run a docker image.
 ```
 $ git clone https://github.com/liutoki/dockerfiles.git
-$ cd dockerfiles/dev_dart_flutter
-$ docker build . -t  dev_dart_flutter
-$ docker run -d -P -p 63201:22 --name dart_flutter -it dev_dart_flutter
+$ cd dockerfiles/dev_treefrog
+$ docker-compose up -d
 ```
 2. Access to docker image from your host os
 ```
-$ ssh -X -p 63201 root@localhost
+$ ssh -X -p 63204 root@localhost
 # The password is ``screencast``.
 ```
 3. Clean up
 ```
-$ docker container stop dart_flutter
-$ docker container rm dart_flutter
-# If you want to remove dev_dart_flutter image, do the following command.
-$ docker image rm dev_dart_flutter
+$ docker-compose stop
+# If you want to remove docker-compose image, do the following command.
+$ docker-compose rm
 ```
 
 # Tips
@@ -29,15 +27,30 @@ $ docker image rm dev_dart_flutter
 ```
 $ vagrant ssh-config >> ~/.ssh/config
 ```
-2. Add dev_dart_flutter ssh config
+2. Add dev_treefrog ssh config
 ```
-Host dev_dart_flutter
+Host dev_treefrog
   HostName 127.0.0.1
   User root
-  port 63201
+  port 63204
   ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe -W %h:%p vagrant
 ```
 3. Change vscode setting
 ```
 "remote.SSH.showLoginTerminal": true
 ```
+
+## Access to app from Host.
+1. Run the treefrog app.
+```
+$ treefrog -p 8800 /[path to treefrog root dir]
+```
+2. ssh port forwarding from Host.
+```
+ssh -L 8800:localhost:8800 dev_treefrog
+```
+
+3. Access through browser
+````
+http://localhost:8800
+````
