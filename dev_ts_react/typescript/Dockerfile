@@ -10,8 +10,12 @@ RUN apt-get install -y curl wget less lsof git
 WORKDIR /usr/src/app
 
 # typescript
-# install typescript for global
+# install typescript for global.
 RUN npm install -g -y typescript
+
+# install react for global.
+RUN npm install -g react react-dom
+RUN npm install -g @types/react @types/react-dom
 
 # SSH
 RUN apt-get install -y openssh-server
