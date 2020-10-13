@@ -1,0 +1,11 @@
+version: "3"
+services:
+    typescript:
+        container_name: typescript
+        build:
+            context: .
+            dockerfile: ./typescript/Dockerfile
+        volumes:
+            - ./:/usr/src/app
+        ports:
+            - '63205:22'
