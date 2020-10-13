@@ -14,8 +14,8 @@ WORKDIR /usr/src/app
 RUN npm install -g -y typescript
 
 # install react for global.
-RUN npm install -g react react-dom
-RUN npm install -g @types/react @types/react-dom
+RUN npm install -g react react-dom react-native-cli
+RUN npm install -g @types/react @types/react-dom @types/react-native-cli
 
 # SSH
 RUN apt-get install -y openssh-server
