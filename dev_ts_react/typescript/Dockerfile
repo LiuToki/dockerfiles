@@ -10,7 +10,7 @@ RUN apt-get install -y curl wget less lsof git
 WORKDIR /usr/src/app
 
 # SSH
-RUN apt install -y openssh-server
+RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
 RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
