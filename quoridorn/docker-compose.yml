@@ -20,4 +20,4 @@ services:
         volumes:
             - ./data:/data
         depends_on:
-            - db
+            - mongo
