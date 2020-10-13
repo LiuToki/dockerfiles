@@ -9,6 +9,10 @@ RUN apt-get install -y curl wget less lsof git
 # WORKDIR
 WORKDIR /usr/src/app
 
+# typescript
+# install typescript for global
+RUN npm install -g -y typescript
+
 # SSH
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
