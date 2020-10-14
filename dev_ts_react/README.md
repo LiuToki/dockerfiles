@@ -1,5 +1,5 @@
 # What is this.
-Build typescript + react development environment with ssh.
+Build "latest" typescript + react development environment with ssh.
 
 # How to use
 
@@ -42,3 +42,5 @@ Host dev_ts_react
 
 # Memo
 OS:debian
+Node:latest
+Typescript:latest

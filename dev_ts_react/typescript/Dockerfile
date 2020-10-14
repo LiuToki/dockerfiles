@@ -1,4 +1,4 @@
-FROM node:14.13.1-stretch
+FROM node:latest
 ENV LANG C.UTF-8
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 RUN npm install -g -y typescript
 
 # install react for global.
-RUN npm install -g react react-dom react-native-cli
+RUN npm install -g react react-dom react-native-cli expo-cli
 RUN npm install -g @types/react @types/react-dom @types/react-native-cli
 
 # SSH
