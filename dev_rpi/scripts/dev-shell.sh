@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -euo pipefail
-docker compose exec rpi-dev bash
+docker compose exec -u dev dev-rpi bash

@@ -1,9 +1,9 @@
 services:
-  rpi-dev:
-    container_name: rpi-dev
+  dev-rpi:
+    container_name: dev-rpi
     build:
       context: .
-      dockerfile: docker/rpi-dev.Dockerfile
+      dockerfile: docker/dev-rpi.Dockerfile
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
@@ -20,8 +20,8 @@ services:
     volumes:
       - rpi-workspace:/workspace
       - rpi-sysroot:/opt/rpi-sysroot
+      - rpi-ssh-host-keys:/var/lib/ssh-host-keys
       - ${HOME}/.ssh:/home/dev/.ssh:rw
-      - ${HOME}/.gitconfig:/home/dev/.gitconfig:ro
     working_dir: /workspace
     ports:
       - "63206:22"
@@ -31,3 +31,4 @@ services:
 volumes:
   rpi-workspace:
   rpi-sysroot:
+  rpi-ssh-host-keys:

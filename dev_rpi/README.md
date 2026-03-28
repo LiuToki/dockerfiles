@@ -397,6 +397,25 @@ message(STATUS "Raspberry Pi CPU tuning    : $ENV{RPI_CPU}")
 }
 ```
 
+## `~/.ssh/config`の設定例
+
+```
+Host rpi-dev
+    HostName localhost
+    Port 63206
+    User dev
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    StrictHostKeyChecking yes
+    UserKnownHostsFile ~/.ssh/known_hosts
+```
+
+もしすでに古い鍵が記録されていて警告が出ているなら、最初に1回だけ消してください。
+
+```
+$ ssh-keygen -R "[localhost]:63206"
+```
+
 ## スクリプト一覧
 
 ### `scripts/dev-up.sh`

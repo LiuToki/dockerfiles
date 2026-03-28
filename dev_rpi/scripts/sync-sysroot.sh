@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker compose exec -T rpi-dev bash -lc '
+docker compose exec -T dev-rpi bash -lc '
 set -euo pipefail
 
 : "${RPI_HOST:=raspberrypi.local}"
