@@ -1,0 +1,50 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR aarch64)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+set(_RPI_TARGET_TRIPLE "aarch64-linux-gnu")
+
+if(DEFINED ENV{RPI_SYSROOT} AND NOT "$ENV{RPI_SYSROOT}" STREQUAL "")
+  set(CMAKE_SYSROOT "$ENV{RPI_SYSROOT}")
+elseif(DEFINED ENV{RPI_SYSROOT_BASE} AND NOT "$ENV{RPI_SYSROOT_BASE}" STREQUAL "")
+  set(CMAKE_SYSROOT "$ENV{RPI_SYSROOT_BASE}/${_RPI_TARGET_TRIPLE}")
+else()
+  set(CMAKE_SYSROOT "/opt/rpi-sysroot/${_RPI_TARGET_TRIPLE}")
+endif()
+
+set(CMAKE_C_COMPILER   "/usr/bin/${_RPI_TARGET_TRIPLE}-gcc")
+set(CMAKE_CXX_COMPILER "/usr/bin/${_RPI_TARGET_TRIPLE}-g++")
+set(CMAKE_AR           "/usr/bin/${_RPI_TARGET_TRIPLE}-ar")
+set(CMAKE_RANLIB       "/usr/bin/${_RPI_TARGET_TRIPLE}-ranlib")
+set(CMAKE_STRIP        "/usr/bin/${_RPI_TARGET_TRIPLE}-strip")
+
+set(CMAKE_FIND_ROOT_PATH "${CMAKE_SYSROOT}")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+set(_PKG_CONFIG_LIBDIR_LIST
+  "${CMAKE_SYSROOT}/usr/lib/${_RPI_TARGET_TRIPLE}/pkgconfig"
+  "${CMAKE_SYSROOT}/usr/lib/pkgconfig"
+  "${CMAKE_SYSROOT}/usr/share/pkgconfig"
+  "${CMAKE_SYSROOT}/usr/local/lib/${_RPI_TARGET_TRIPLE}/pkgconfig"
+  "${CMAKE_SYSROOT}/usr/local/lib/pkgconfig"
+)
+list(JOIN _PKG_CONFIG_LIBDIR_LIST ":" _PKG_CONFIG_LIBDIR)
+
+set(ENV{PKG_CONFIG_DIR} "")
+set(ENV{PKG_CONFIG_SYSROOT_DIR} "${CMAKE_SYSROOT}")
+set(ENV{PKG_CONFIG_LIBDIR} "${_PKG_CONFIG_LIBDIR}")
+
+if(DEFINED ENV{RPI_CPU} AND NOT "$ENV{RPI_CPU}" STREQUAL "")
+  set(CMAKE_C_FLAGS_INIT   "-mcpu=$ENV{RPI_CPU}")
+  set(CMAKE_CXX_FLAGS_INIT "-mcpu=$ENV{RPI_CPU}")
+else()
+  set(CMAKE_C_FLAGS_INIT   "-march=armv8-a")
+  set(CMAKE_CXX_FLAGS_INIT "-march=armv8-a")
+endif()
+
+message(STATUS "Raspberry Pi target triple : ${_RPI_TARGET_TRIPLE}")
+message(STATUS "Raspberry Pi sysroot       : ${CMAKE_SYSROOT}")
+message(STATUS "Raspberry Pi CPU tuning    : $ENV{RPI_CPU}")
